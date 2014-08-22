@@ -2,11 +2,11 @@
 
 @font-face {
     font-family: 'courier_newregular';
-    src: url('/fonts/courier_new-webfont.eot');
-    src: url('/fonts/courier_new-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/fonts/courier_new-webfont.woff') format('woff'),
-         url('/fonts/courier_new-webfont.ttf') format('truetype'),
-         url('/fonts/courier_new-webfont.svg#courier_newregular') format('svg');
+    src: url('fonts/courier_new-webfont.eot');
+    src: url('fonts/courier_new-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/courier_new-webfont.woff') format('woff'),
+         url('fonts/courier_new-webfont.ttf') format('truetype'),
+         url('fonts/courier_new-webfont.svg#courier_newregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
