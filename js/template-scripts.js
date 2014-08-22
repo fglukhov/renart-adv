@@ -14,6 +14,12 @@ $(window).scroll(function() {
 });
 
 $(document).ready(function() {
+	
+	$(".tab-projects-item").click(function() {
+		var caseHash = $(this).attr("rel");
+		navToCase(caseHash);
+		return false;
+	})
 
 	// Top menu
 	
@@ -79,7 +85,9 @@ $(document).ready(function() {
       
       tabContents.hide();
       
-      tabContents.filter("[rel='"+$(this).attr("rel")+"']").fadeIn(250)
+      tabContents.filter("[rel='"+$(this).attr("rel")+"']").fadeIn(250);
+			
+			window.location.hash = tabContents.filter("[rel='"+$(this).attr("rel")+"']").find(".slide-act").attr("rel")
       
     });
     
@@ -283,6 +291,16 @@ $(document).ready(function() {
 				$(".ideal-item h3").removeClass("act");
     }
   });
+	
+	// Навигация к кейсу
+	
+	var pageHash = window.location.hash;
+	
+	var caseId = pageHash.replace("#","");
+	
+	if ($(".works-slide[rel='"+caseId+"']").length) {
+		navToCase(caseId);
+	}
 	
 });
 
@@ -652,6 +670,8 @@ function worksSlider() {
 			slider.find(".slide-act").hide().removeClass("slide-act");
 			slides.eq(curIndex).fadeIn(150).addClass("slide-act");
 			
+			window.location.hash = slides.eq(curIndex).attr("rel");
+			
 			animateWorksSlide(slider);
 			
 		});
@@ -666,6 +686,8 @@ function worksSlider() {
 			
 			slider.find(".slide-act").hide().removeClass("slide-act");
 			slides.eq(curIndex).fadeIn(150).addClass("slide-act");
+			
+			window.location.hash = slides.eq(curIndex).attr("rel");
 			
 			animateWorksSlide(slider);
 			
@@ -698,4 +720,16 @@ function animateWorksSlide(slider) {
 		opacity: 1
 	},1000);
 	
+}
+
+function navToCase(caseHash) {
+	window.location.hash = caseHash;
+	var caseSlide = $(".works-slide[rel='"+caseHash+"']");
+	var caseTab = $(".works-tabs .tab[rel='"+caseSlide.parents(".works-tab-content").attr("rel")+"']");
+	caseSlide.siblings(".works-slide").hide().removeClass("slide-act");
+	caseSlide.fadeIn(250).addClass("slide-act");
+	caseTab.click();
+  $("html,body").animate({
+		scrollTop: $("a[name='cases']").offset().top - 49
+	},1000);
 }
